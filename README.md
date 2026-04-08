@@ -1,1 +1,0 @@
-# H1H024005_Windi-Sulaiman-Ismansa_Laprak-Pertemuan-2
