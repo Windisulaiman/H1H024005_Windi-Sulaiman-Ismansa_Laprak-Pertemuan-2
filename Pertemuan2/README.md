@@ -4,6 +4,7 @@ Shift Awal : B
 Shift Akhir: A  
 Pertemuan 2  
 
+
 # 2.5.4 Pertanyaan Praktikum 
 1\. Gambarkan rangkaian schematic yang digunakan pada percobaan!  
 <img width="256" height="502" alt="Percobaan2A 2" src="https://github.com/user-attachments/assets/221d2e8f-806e-4000-8189-8e3421404470" />
