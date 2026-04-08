@@ -50,25 +50,28 @@ Menggunakan dua pushbutton untuk mengontrol tampilan dari 0-f pada rangkaian.
 * **`if(currentDigit < 0) currentDigit = 15`**: Logika 'wrapping' agar setelah 0 kembali ke F saat dikurangi.
 * **`delay(200)`**: Sebagai 'debounce' untuk mencegah satu tekanan tombol terbaca berkali-kali akibat getaran mekanis tombol.
 
-# 2.7 Pertanyaan Praktikum 
-1. Uraikan hasil tugas pada praktikum yang telah dilakukan pada setiap percobaan! 
-Percobaan 1A (Automatic Counter):
-Hasil: Display menampilkan urutan heksadesimal (0, 1, 2, ... E, F) secara berulang dengan jeda 1 detik.
+# 2.7 Pertanyaan Praktikum
+<div align="justify">
+1\. Uraikan hasil tugas pada praktikum yang telah dilakukan pada setiap percobaan!  
+Percobaan 1A (Automatic Counter):  
+Hasil: Display menampilkan urutan heksadesimal (0, 1, 2, ... E, F) secara berulang dengan jeda 1 detik.  
 Analisis: Program menggunakan perulangan for otomatis. Sistem ini membuktikan bahwa Arduino dapat melakukan tugas sekuensial berdasarkan waktu (time-based event).
 
-Percobaan 1B (Manual Counter via Button):
-Hasil: Display hanya berganti angka ketika tombol ditekan. Angka akan kembali ke '0' setelah mencapai 'F'.
+Percobaan 1B (Manual Counter via Button)  
+Hasil: Display hanya berganti angka ketika tombol ditekan. Angka akan kembali ke '0' setelah mencapai 'F'.  
 Analisis: Program mengimplementasikan input handling. Penggunaan INPUT_PULLUP memastikan kestabilan pembacaan sinyal tanpa gangguan noise elektromagnetik (floating).
 
-2. Bagaimana prinsip kerja dari Seven Segment Display dalam menampilkan angka dan karakter? 
+2\. Bagaimana prinsip kerja dari Seven Segment Display dalam menampilkan angka dan karakter? 
 
-Seven Segment bekerja dengan prinsip dioda (LED) yang disusun membentuk pola angka.
-Tipe Common Anode (CA): Seluruh kaki positif (Anoda) dari kedelapan LED di dalam display dihubungkan ke satu jalur yaitu 5V (VCC).
+Seven Segment bekerja dengan prinsip dioda (LED) yang disusun membentuk pola angka.  
+Tipe Common Anode (CA): Seluruh kaki positif (Anoda) dari kedelapan LED di dalam display dihubungkan ke satu jalur yaitu 5V (VCC).  
 Aktif LOW: Karena Anoda sudah terhubung ke 5V, maka untuk menyalakan segmen tertentu, Arduino harus mengirimkan sinyal LOW (0V/GND) ke Katoda segmen tersebut agar terjadi perbedaan potensial.
 
 Pembentukan Karakter: Setiap karakter (0-F) dibentuk dengan mengombinasikan segmen mana yang diberi sinyal LOW. Contohnya, untuk angka "1", hanya segmen b dan c yang diberi sinyal LOW, sementara segmen lainnya diberi sinyal HIGH.
 
-3. Jelaskan bagaimana sistem counter bekerja pada program tersebut! 
+3\. Jelaskan bagaimana sistem counter bekerja pada program tersebut! 
 Sistem counter bekerja dengan menyimpan angka hitungan dalam variabel currentDigit yang berfungsi sebagai penunjuk indeks pada matriks pola segmen. Setiap kali tombol ditekan, program mendeteksi perubahan sinyal dan mengubah nilai variabel tersebut, baik bertambah (increment) maupun berkurang (decrement).
 
 Untuk mencegah error, program menggunakan logika pembatas agar angka kembali ke 0 setelah mencapai F, atau kembali ke F jika dikurangi dari 0. Setelah nilai diperbarui, Arduino mengirimkan kombinasi sinyal biner dari array ke pin digital untuk menyalakan LED yang sesuai pada Seven Segment secara fisik.
+</div>
+
