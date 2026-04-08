@@ -17,6 +17,8 @@ Program ini menggunakan jenis Common Anode karena pada rangkaian pin 5V Arduino 
 
 
 4\. Modifikasi program agar tampilan berjalan dari F ke 0 dan berikan penjelasan disetiap baris kode nya dalam bentuk README.md!  
+![F-0  soal 4 264 (1)](https://github.com/user-attachments/assets/751084e8-52a5-4c59-ba5e-ebe936a7ab10)
+
 
 <img width="400" height="600" alt="f-0" src="https://github.com/user-attachments/assets/cc783661-d75a-4aac-b0e5-c391c6677dec" />  
 
