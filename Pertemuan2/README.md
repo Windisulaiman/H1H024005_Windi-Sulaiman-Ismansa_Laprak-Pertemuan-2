@@ -36,9 +36,15 @@ Program ini menggunakan jenis Common Anode karena pada rangkaian pin 5V Arduino 
 
 2\. Mengapa pada push button digunakan mode INPUT_PULLUP pada Arduino Uno? Apa keuntungannya dibandingkan rangkaian biasa?
 Mengapa digunakan?  
-
+<div align="justify">
+Penggunaan mode **`INPUT_PULLUP`** pada push button bertujuan untuk memanfaatkan resistor internal yang sudah tertanam di dalam mikrokontroler Arduino guna menarik tegangan pin ke level HIGH (5V) secara default. Tujuannya untuk menghindari kondisi floating, yaitu di mana keadaa pin input tidak memiliki tegangan yang pasti sehingga dapat berubah-ubah antara HIGH dan LOW akibat gangguan elektromagnetik di sekitar rangkaian.  
+Benefit yang diberikan dibandingkan rangkaian biasa adalah desain rangkaian lebih sederhana, karena user tidak perlu lagi memasang resistor pull-up eksternal secara fisik di breadboard, yang sekaligus menghemat ruang dan mengurangi jumlah komponen serta kabel yang digunakan. Dengan mode ini, tombol cukup dihubungkan langsung antara pin digital dan GND, sehingga saat tombol ditekan, sinyal akan berubah menjadi LOW, yang membuat pembacaan input menjadi jauh lebih stabil dan akurat.  
+  
 3\. Jika salah satu LED segmen tidak menyala, apa saja kemungkinan penyebabnya dari sisi hardware maupun software?  
-
+Jika salah satu LED segmen tidak menyala, terdapat beberapa kemungkinan penyebab yang perlu diperiksa baik dari sisi hardware maupun software.  
+Dari sisi hardware, penyebab yang paling umum adalah adanya komponen tidak terpasang dengan benar, letak komponen pada breadboard tidak tepat, atau bahkan kerusakan fisik pada komponen seven segment itu sendiri di mana salah satu dioda LED di dalamnya telah terbakar.  
+Sementara itu, dari sisi software,hal yang paling umum ialah adanya kesalahan dalam pemetaan nomor pin pada variabel segmentPins, lupa mengatur mode pin tersebut sebagai OUTPUT di dalam fungsi **`setup()`**, atau adanya kesalahan penulisan bit pada matriks **`digitPattern`** yang menyebabkan segmen tertentu tetap bernilai mati meskipun angka yang dipanggil sudah benar.  
+</div>
 4\. Modifikasi rangkaian dan program dengan dua push button yang berfungsi sebagai penambahan (increment) dan pengurangan (decrement pada sistem counter dan berikan penjelasan disetiap baris kode nya dalam bentuk README.md!  
 <img width="400" height="600" alt="2 6 4" src="https://github.com/user-attachments/assets/8d4b1d70-d074-4f2b-b513-c0217a672fdf" />   
 
@@ -54,7 +60,7 @@ Menggunakan dua pushbutton untuk mengontrol tampilan dari 0-f pada rangkaian.
 # 2.7 Pertanyaan Praktikum
 <div align="justify">
 1\. Uraikan hasil tugas pada praktikum yang telah dilakukan pada setiap percobaan!  
-Percobaan 1A (Automatic Counter):  
+Percobaan 2  A (Automatic Counter):  
 Hasil: Display menampilkan urutan heksadesimal (0, 1, 2, ... E, F) secara berulang dengan jeda 1 detik.  
 Analisis: Program menggunakan perulangan for otomatis. Sistem ini membuktikan bahwa Arduino dapat melakukan tugas sekuensial berdasarkan waktu (time-based event).
 
@@ -62,17 +68,13 @@ Percobaan 1B (Manual Counter via Button)
 Hasil: Display hanya berganti angka ketika tombol ditekan. Angka akan kembali ke '0' setelah mencapai 'F'.  
 Analisis: Program mengimplementasikan input handling. Penggunaan INPUT_PULLUP memastikan kestabilan pembacaan sinyal tanpa gangguan noise elektromagnetik (floating).
 
-2\. Bagaimana prinsip kerja dari Seven Segment Display dalam menampilkan angka dan karakter? 
+2\. Bagaimana prinsip kerja dari Seven Segment Display dalam menampilkan angka dan karakter?  
+Mekanisme kerja Seven Segment Display dalam menampilkan karakter dan angka bergantung pada kontrol selektif terhadap tujuh elemen LED yang terintegrasi secara modular. Pada percobaan yang telah dilakukan, perangkat beroperasi di bawah arsitektur Common Anode, dimana seluruh terminal anoda terpusat pada potensial positif 5V. secaara fungsi ini menunjukkan bahwa aktivasi setiap segmen (a-g) bersifat Active LOW, di mana aliran arus hanya akan terjadi apabila mikrokontroler Arduino mendiversifikasi output digitalnya menjadi logika nol atau ground.
+Tampilan seperti transisi angka 0 hingga F, terbentuk melalui kombinasi eksitasi segmen yang spesifik. Sebagai contoh, karakter "7" muncul ketika segmen a, b, dan c berada dalam status konduktif, sementara segmen lainnya dipertahankan dalam kondisi cut-off melalui sinyal HIGH. 
 
-Seven Segment bekerja dengan prinsip dioda (LED) yang disusun membentuk pola angka.  
-Tipe Common Anode (CA): Seluruh kaki positif (Anoda) dari kedelapan LED di dalam display dihubungkan ke satu jalur yaitu 5V (VCC).  
-Aktif LOW: Karena Anoda sudah terhubung ke 5V, maka untuk menyalakan segmen tertentu, Arduino harus mengirimkan sinyal LOW (0V/GND) ke Katoda segmen tersebut agar terjadi perbedaan potensial.
+3\. Jelaskan bagaimana sistem counter bekerja pada program tersebut!  
+Sistem counter pada program percobaan bekerja dengan memanfaatkan variabel **`currentDigit`** sebagai penyimpan nilai numerik yang berfungsi sebagai indeks untuk mengakses matriks pola segmen. Ketika program mendeteksi perubahan sinyal pada tombol dari HIGH ke LOW akibat penggunaan **`INPUT_PULLUP`**, nilai pada variabel akan dimanipulasi melalui operasi penambahan (increment) atau pengurangan (decrement).
 
-Pembentukan Karakter: Setiap karakter (0-F) dibentuk dengan mengombinasikan segmen mana yang diberi sinyal LOW. Contohnya, untuk angka "1", hanya segmen b dan c yang diberi sinyal LOW, sementara segmen lainnya diberi sinyal HIGH.
-
-3\. Jelaskan bagaimana sistem counter bekerja pada program tersebut! 
-Sistem counter bekerja dengan menyimpan angka hitungan dalam variabel currentDigit yang berfungsi sebagai penunjuk indeks pada matriks pola segmen. Setiap kali tombol ditekan, program mendeteksi perubahan sinyal dan mengubah nilai variabel tersebut, baik bertambah (increment) maupun berkurang (decrement).
-
-Untuk mencegah error, program menggunakan logika pembatas agar angka kembali ke 0 setelah mencapai F, atau kembali ke F jika dikurangi dari 0. Setelah nilai diperbarui, Arduino mengirimkan kombinasi sinyal biner dari array ke pin digital untuk menyalakan LED yang sesuai pada Seven Segment secara fisik.
+Agar sistem tetap stabil, program menerapkan logic wrapping atau pembatas yang memastikan nilai variabel selalu berada dalam rentang 0 hingga 15. jika hitungan melampaui batas maksimal (F), maka posisi akan dikembalikan ke nol, dan sebaliknya. Setelah nilai variabel diperbarui, fungsi **`displayDigit`** akan segera memanggil baris data biner yang relevan dari memori dan mengirimkan sinyal Active LOW ke pin Arduino untuk mengubah konfigurasi nyala LED pada seven segment.
 </div>
 
