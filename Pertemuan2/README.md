@@ -60,16 +60,12 @@ Menggunakan dua pushbutton untuk mengontrol tampilan dari 0-f pada rangkaian.
 # 2.7 Pertanyaan Praktikum
 <div align="justify">
 1\. Uraikan hasil tugas pada praktikum yang telah dilakukan pada setiap percobaan!  
-Percobaan 2  A (Automatic Counter):  
-Hasil: Display menampilkan urutan heksadesimal (0, 1, 2, ... E, F) secara berulang dengan jeda 1 detik.  
-Analisis: Program menggunakan perulangan for otomatis. Sistem ini membuktikan bahwa Arduino dapat melakukan tugas sekuensial berdasarkan waktu (time-based event).
+Berdasarkan percobaan 2A (Automatic Counter) yang telah dilakukan, sistem berhasil menampilkan urutan karakter dari 0 hingga F secara otomatis dan terus menerus berputar. Dengan memanfaatkan struktur perulangan for di dalam fungsi loop() yang secara sekuensial memanggil indeks baris pada matriks digitPattern berdasarkan variabel penghitung yang dikelola oleh sistem. Dengan adanya instruksi delay(1000), setiap karakter tertahan selama satu detik pada layar sebelum berpindah ke karakter berikutnya, hal ini menunjukkan bahwa mikrokontroler mampu mengeksekusi transisi logika biner menjadi representasi visual berdasarkan parameter waktu yang ditentukan secara presisi dalam code program.  
 
-Percobaan 1B (Manual Counter via Button)  
-Hasil: Display hanya berganti angka ketika tombol ditekan. Angka akan kembali ke '0' setelah mencapai 'F'.  
-Analisis: Program mengimplementasikan input handling. Penggunaan INPUT_PULLUP memastikan kestabilan pembacaan sinyal tanpa gangguan noise elektromagnetik (floating).
+Pada percobaan 1B (Manual Counter via Button) menunjukkan transisi karakter pada seven segment sepenuhnya dikendalikan melalui push button. Berbeda dengan sistem otomatis, rangkaian ini menggunakan program logika deteksi status (state detection) pada pin digital 3 yang dikonfigurasi sebagai INPUT_PULLUP, sehingga variabel currentDigit hanya akan bertambah (increment) ketika terdeteksi perubahan sinyal dari HIGH ke LOW saat tombol ditekan. Selaian itu penerapan teknik debounce sederhana melalui delay 200ms, yang berfungsi untuk meminimalkan pembacaan ganda akibat getaran mekanis pada tombol, sehingga perpindahan dari angka 0 menuju F dan kembali lagi ke 0 dapat berjalan secara stabil dan responsif sesuai dengan input fisik yang diberikan.  
 
 2\. Bagaimana prinsip kerja dari Seven Segment Display dalam menampilkan angka dan karakter?  
-Mekanisme kerja Seven Segment Display dalam menampilkan karakter dan angka bergantung pada kontrol selektif terhadap tujuh elemen LED yang terintegrasi secara modular. Pada percobaan yang telah dilakukan, perangkat beroperasi di bawah arsitektur Common Anode, dimana seluruh terminal anoda terpusat pada potensial positif 5V. secaara fungsi ini menunjukkan bahwa aktivasi setiap segmen (a-g) bersifat Active LOW, di mana aliran arus hanya akan terjadi apabila mikrokontroler Arduino mendiversifikasi output digitalnya menjadi logika nol atau ground.
+Mekanisme kerja Seven Segment Display dalam menampilkan karakter dan angka bergantung pada kontrol selektif terhadap tujuh elemen LED yang terintegrasi secara modular. Pada percobaan yang telah dilakukan, perangkat beroperasi di bawah arsitektur Common Anode, dimana seluruh terminal anoda terpusat pada potensial positif 5V. Secara fungsi ini menunjukkan bahwa aktivasi setiap segmen (a-g) bersifat Active LOW, di mana aliran arus hanya akan terjadi apabila mikrokontroler Arduino mendiversifikasi output digitalnya menjadi logika nol atau ground.
 Tampilan seperti transisi angka 0 hingga F, terbentuk melalui kombinasi eksitasi segmen yang spesifik. Sebagai contoh, karakter "7" muncul ketika segmen a, b, dan c berada dalam status konduktif, sementara segmen lainnya dipertahankan dalam kondisi cut-off melalui sinyal HIGH. 
 
 3\. Jelaskan bagaimana sistem counter bekerja pada program tersebut!  
