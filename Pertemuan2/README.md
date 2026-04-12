@@ -7,7 +7,7 @@ Pertemuan 2
 
 # 2.5.4 Pertanyaan Praktikum 
 1\. Gambarkan rangkaian schematic yang digunakan pada percobaan!  
-<img width="794" height="631" alt="Screenshot 2026-04-12 230000" src="https://github.com/user-attachments/assets/51098477-a512-4631-b6da-67dc0bdaee31" />
+<img width="256" height="502" alt="Screenshot 2026-04-12 230000" src="https://github.com/user-attachments/assets/51098477-a512-4631-b6da-67dc0bdaee31" />
 
 <img width="256" height="502" alt="Percobaan2A 2" src="https://github.com/user-attachments/assets/221d2e8f-806e-4000-8189-8e3421404470" />
 
@@ -34,7 +34,7 @@ Program ini menggunakan jenis Common Anode karena pada rangkaian pin 5V Arduino 
 
 # 2.6.4 Pertanyaan Praktikum 
 1\. Gambarkan rangkaian schematic yang digunakan pada percobaan!  
-<img width="725" height="550" alt="Screenshot 2026-04-12 225944" src="https://github.com/user-attachments/assets/61c24546-aca8-49ae-adec-951c3d70e2a3" />
+<img width="256" height="502" alt="Screenshot 2026-04-12 225944" src="https://github.com/user-attachments/assets/61c24546-aca8-49ae-adec-951c3d70e2a3" />
 
 <img width="256" height="502" alt="Percobaan1B 2" src="https://github.com/user-attachments/assets/c83b5479-1f46-4a3c-9249-86c501f79f85" />
 
